@@ -1,5 +1,5 @@
-const express = require('express');
-const app = express();
+const express = require("express");
+const { app, server } = require("./socket/socket.js");
 const dotenv = require('dotenv')
 const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/user.routes')
@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use('/api/auth',authRoutes);
 app.use('/api/messages',messageRoutes)
 app.use('/api/users',userRoutes)
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     connectToMongoDB();
     console.log(`server is running on port ${PORT}`);
 })
